@@ -18,6 +18,52 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\XRHI.h" />
+    <ClInclude Include="include\XRHI_API.h" />
+    <ClInclude Include="include\XRHI_BackendAccess.h" />
+    <ClInclude Include="include\XRHI_BackendInterface.h" />
+    <ClInclude Include="include\XRHI_Base.h" />
+    <ClInclude Include="include\XRHI_Buffers.h" />
+    <ClInclude Include="include\XRHI_Caps.h" />
+    <ClInclude Include="include\XRHI_Handles.h" />
+    <ClInclude Include="include\XRHI_InputLayout.h" />
+    <ClInclude Include="include\XRHI_Log.h" />
+    <ClInclude Include="include\XRHI_PipelineLayout.h" />
+    <ClInclude Include="include\XRHI_PipelineState.h" />
+    <ClInclude Include="include\XRHI_Samplers.h" />
+    <ClInclude Include="include\XRHI_Shaders.h" />
+    <ClInclude Include="include\XRHI_States.h" />
+    <ClInclude Include="include\XRHI_Types.h" />
+    <ClInclude Include="source\Backends\DirectX9\BackendDX9.h" />
+    <ClInclude Include="source\Backends\DirectX9\BackendDX9_Internal.h" />
+    <ClInclude Include="source\pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_Caps.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_Geometry.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_Internal.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_PipelineLayout.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_PipelineState.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_RT.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_Samplers.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_Shader.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_States.cpp" />
+    <ClCompile Include="source\Backends\DirectX9\BackendDX9_Texture.cpp" />
+    <ClCompile Include="source\dllmain.cpp" />
+    <ClCompile Include="source\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\XRHI_BackendFabric.cpp" />
+    <ClCompile Include="source\XRHI_Log.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -203,52 +249,6 @@
       <ImportLibrary>$(SolutionDir)\Build\Libraries\$(Configuration)-$(Platform)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="XRHI_Log.cpp" />
-    <ClInclude Include="Backends\DirectX9\BackendDX9.h" />
-    <ClInclude Include="Backends\DirectX9\BackendDX9_Internal.h" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_Geometry.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_PipelineLayout.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_PipelineState.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_RT.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_Samplers.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_States.cpp" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="XRHI.h" />
-    <ClInclude Include="XRHI_API.h" />
-    <ClInclude Include="XRHI_BackendAccess.h" />
-    <ClInclude Include="XRHI_BackendInterface.h" />
-    <ClInclude Include="XRHI_Base.h" />
-    <ClInclude Include="XRHI_Buffers.h" />
-    <ClInclude Include="XRHI_Caps.h" />
-    <ClInclude Include="XRHI_Handles.h" />
-    <ClInclude Include="XRHI_InputLayout.h" />
-    <ClInclude Include="XRHI_Log.h" />
-    <ClInclude Include="XRHI_PipelineLayout.h" />
-    <ClInclude Include="XRHI_PipelineState.h" />
-    <ClInclude Include="XRHI_Samplers.h" />
-    <ClInclude Include="XRHI_Shaders.h" />
-    <ClInclude Include="XRHI_States.h" />
-    <ClInclude Include="XRHI_Types.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Backends\DirectX9\BackendDX9.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_Caps.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_Internal.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_Texture.cpp" />
-    <ClCompile Include="Backends\DirectX9\BackendDX9_Shader.cpp" />
-    <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="XRHI_BackendFabric.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

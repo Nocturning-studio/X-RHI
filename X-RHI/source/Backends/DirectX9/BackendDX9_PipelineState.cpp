@@ -4,7 +4,7 @@
 // File: BackendDX9_PipelineState.cpp
 // Nocturning studio for X-Platform
 ////////////////////////////////////////////////////////////////////////////////
-#include "pch.h"
+#include <source/pch.h>
 #include "BackendDX9.h"
 ////////////////////////////////////////////////////////////////////////////////
 RHI_PipelineStateHandle CRenderBackendDX9::AllocPipelineStateHandle(DX9PipelineState* pso)
