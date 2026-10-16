@@ -2,7 +2,7 @@
 // Created: 08.10.2026 23:15:09
 // Author: NS_Deathman
 // File: BackendDX9_PipelineState.cpp
-// Nocturning studio for X-Platform
+// Nocturning studio for X-RHI
 ////////////////////////////////////////////////////////////////////////////////
 #include <source/pch.h>
 #include "BackendDX9.h"

@@ -2,7 +2,7 @@
 // Created: 01.10.2026 19:49:20
 // Author: NS_Deathman
 // File: BackendDX_Shader.cpp
-// Nocturning studio for X-Platform
+// Nocturning studio for X-RHI
 ////////////////////////////////////////////////////////////////////////////////
 #include <source/pch.h>
 #include "BackendDX9.h"

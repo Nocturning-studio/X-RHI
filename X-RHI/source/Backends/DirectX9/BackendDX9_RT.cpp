@@ -2,7 +2,7 @@
 // Created: 30.09.2026 10:49:35
 // Author: NS_Deathman
 // File: BackendDX9_RT.h
-// Nocturning studio for X-Platform
+// Nocturning studio for X-RHI
 ////////////////////////////////////////////////////////////////////////////////
 #include <source/pch.h>
 #include "BackendDX9.h"

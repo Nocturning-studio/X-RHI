@@ -2,7 +2,7 @@
 // Created: 02.10.2026 15:07:42
 // Author: NS_Deathman
 // File: BackendDX9_Samplers.cpp
-// Nocturning studio for X-Platform
+// Nocturning studio for X-RHI
 ////////////////////////////////////////////////////////////////////////////////
 #include <source/pch.h>
 #include "BackendDX9.h"
