@@ -81,6 +81,9 @@
     <ClInclude Include="include\XRHI_Math.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\XRHI_Config.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\dllmain.cpp">

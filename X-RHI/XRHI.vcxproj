@@ -26,6 +26,7 @@
     <ClInclude Include="include\XRHI_Base.h" />
     <ClInclude Include="include\XRHI_Buffers.h" />
     <ClInclude Include="include\XRHI_Caps.h" />
+    <ClInclude Include="include\XRHI_Config.h" />
     <ClInclude Include="include\XRHI_Handles.h" />
     <ClInclude Include="include\XRHI_InputLayout.h" />
     <ClInclude Include="include\XRHI_Log.h" />
