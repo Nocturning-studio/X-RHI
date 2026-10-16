@@ -29,6 +29,7 @@
     <ClInclude Include="include\XRHI_Handles.h" />
     <ClInclude Include="include\XRHI_InputLayout.h" />
     <ClInclude Include="include\XRHI_Log.h" />
+    <ClInclude Include="include\XRHI_Math.h" />
     <ClInclude Include="include\XRHI_PipelineLayout.h" />
     <ClInclude Include="include\XRHI_PipelineState.h" />
     <ClInclude Include="include\XRHI_Samplers.h" />

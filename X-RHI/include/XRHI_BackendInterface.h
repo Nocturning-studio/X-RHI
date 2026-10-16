@@ -4,8 +4,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 #pragma once
 ////////////////////////////////////////////////////////////////////////////////
-#include "XRHI_API.h"
-////////////////////////////////////////////////////////////////////////////////
 class XRHI_API IRenderBackend
 {
   public:
@@ -40,9 +38,9 @@ class XRHI_API IRenderBackend
 	virtual void DestroyDSV(RHI_DepthStencilView dsv) = 0;
 
 	virtual void SetRenderTargets(const RHI_RenderTargetView* rtvs, uint32_t count, RHI_DepthStencilView dsv) = 0;
-	virtual void ClearRenderTarget(RHI_RenderTargetView rtv, const fvec4& color) = 0;
+	virtual void ClearRenderTarget(RHI_RenderTargetView rtv, const Float4& color) = 0;
 	virtual void ClearDepthStencil(RHI_DepthStencilView dsv, float depth, uint8_t stencil) = 0;
-	virtual void Clear(uint32_t clearFlags, const fvec4 color, float depth, uint8_t stencil) = 0;
+	virtual void Clear(uint32_t clearFlags, const Float4 color, float depth, uint8_t stencil) = 0;
 
 	virtual RHI_TextureHandle CreateTexture(const RHI_TextureDesc& desc, const void* initialData = nullptr) = 0;
 	virtual void DestroyTexture(RHI_TextureHandle handle) = 0;
@@ -90,7 +88,7 @@ class XRHI_API IRenderBackend
 	virtual bool GetScissorRect(RHI_Rect& out) const = 0;
 
 	virtual void SetStencilRef(uint8_t ref) = 0;
-	virtual void SetBlendFactor(const fvec4& factor) = 0;
+	virtual void SetBlendFactor(const Float4& factor) = 0;
 	virtual void SetDepthBounds(float minZ, float maxZ) = 0;
 
 	virtual void Draw(uint32_t vertexCount, uint32_t startVertex = 0) = 0;

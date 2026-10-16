@@ -376,7 +376,7 @@ void CRenderBackendDX9::SetRenderTargets(const RHI_RenderTargetView* rtvs,
 // Clear
 // ============================================================================
 
-void CRenderBackendDX9::ClearRenderTarget(RHI_RenderTargetView rtv, const fvec4& color)
+void CRenderBackendDX9::ClearRenderTarget(RHI_RenderTargetView rtv, const Float4& color)
 {
 	if(!m_pDevice)
 		return;

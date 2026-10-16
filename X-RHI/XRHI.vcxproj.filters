@@ -78,6 +78,9 @@
     <ClInclude Include="source\Backends\DirectX9\BackendDX9_Internal.h">
       <Filter>Source\Backends\DirectX 9</Filter>
     </ClInclude>
+    <ClInclude Include="include\XRHI_Math.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\dllmain.cpp">

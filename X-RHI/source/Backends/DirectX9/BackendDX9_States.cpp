@@ -374,7 +374,7 @@ void CRenderBackendDX9::SetStencilRef(uint8_t ref)
 	m_stencilRefCacheValid = true;
 }
 
-void CRenderBackendDX9::SetBlendFactor(const fvec4& factor)
+void CRenderBackendDX9::SetBlendFactor(const Float4& factor)
 {
 	if(!m_pDevice)
 		return;

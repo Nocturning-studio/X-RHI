@@ -5,6 +5,7 @@
 #pragma once
 ////////////////////////////////////////////////////////////////////////////////
 #include "XRHI_API.h"
+#include "XRHI_Math.h"
 #include "XRHI_Base.h"
 #include "XRHI_Log.h"
 #include "XRHI_Types.h"

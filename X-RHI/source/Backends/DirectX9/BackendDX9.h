@@ -36,9 +36,9 @@ class XRHI_API CRenderBackendDX9 : public IRenderBackend
 	virtual void DestroyDSV(RHI_DepthStencilView dsv) override;
 
 	virtual void SetRenderTargets(const RHI_RenderTargetView* rtvs, uint32_t count, RHI_DepthStencilView dsv) override;
-	virtual void ClearRenderTarget(RHI_RenderTargetView rtv, const fvec4& color) override;
+	virtual void ClearRenderTarget(RHI_RenderTargetView rtv, const Float4& color) override;
 	virtual void ClearDepthStencil(RHI_DepthStencilView dsv, float depth, uint8_t stencil) override;
-	virtual void Clear(uint32_t clearFlags, const fvec4 color, float depth, uint8_t stencil) override;
+	virtual void Clear(uint32_t clearFlags, const Float4 color, float depth, uint8_t stencil) override;
 
 	virtual void GetAvailableResolutions(RHI_Format format, std::vector<std::pair<uint32_t, uint32_t>>& outResolutions) const override;
 
@@ -89,7 +89,7 @@ class XRHI_API CRenderBackendDX9 : public IRenderBackend
 	virtual bool GetScissorRect(RHI_Rect& out) const override;
 
 	virtual void SetStencilRef(uint8_t ref) override;
-	virtual void SetBlendFactor(const fvec4& factor) override;
+	virtual void SetBlendFactor(const Float4& factor) override;
 	virtual void SetDepthBounds(float minZ, float maxZ) override;
 
 	void InvalidateCache();

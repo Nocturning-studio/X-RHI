@@ -431,7 +431,7 @@ void CRenderBackendDX9::SetShaderConstants(RHI_ShaderType stage, uint32_t startR
 
 	// D3D9 требует, чтобы константы были выровнены на 16 байт. Мы не
 	// проверяем это здесь — align — ответственность вызывающего кода.
-	// CShaderConstantBuffer хранит массив в ALIGN(16) fvec4, так что
+	// CShaderConstantBuffer хранит массив в ALIGN(16) Float4, так что
 	// выравнивание соблюдено.
 	//
 	// Регистры нумеруются с 0, максимум — 255 для SM3.0 (или меньше по caps).

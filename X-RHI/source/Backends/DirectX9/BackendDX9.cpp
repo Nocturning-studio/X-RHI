@@ -626,7 +626,7 @@ void CRenderBackendDX9::OnFrameEnd()
 	m_pDevice->EndScene();
 }
 
-void CRenderBackendDX9::Clear(uint32_t clearFlags, const fvec4 color, float depth, uint8_t stencil)
+void CRenderBackendDX9::Clear(uint32_t clearFlags, const Float4 color, float depth, uint8_t stencil)
 {
 	if(!m_pDevice)
 		return;
