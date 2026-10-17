@@ -556,6 +556,7 @@ bool CRenderBackendDX9::Reset(const RHI_PresentationParams& params)
 
 	FillPresentParams(params, backBufferFmt, depthStencilFmt, refreshHz);
 
+	InvalidateUserRTVDSVOnReset();
 	ReleaseNativeDeviceResources();
 
 	HRESULT hr = m_pDevice->Reset(&m_PP);
@@ -575,9 +576,9 @@ bool CRenderBackendDX9::Reset(const RHI_PresentationParams& params)
 	CacheDeviceCapsFromD3D();
 
 	Print("* [DX9] Device reset successfully: %dx%d %s, interval=%d", m_backBufferWidth,
-		m_backBufferHeight,
-		params.Windowed ? "windowed" : "fullscreen",
-		params.SyncInterval);
+																	  m_backBufferHeight,
+																	  params.Windowed ? "windowed" : "fullscreen",
+																	  params.SyncInterval);
 	return true;
 }
 
@@ -612,8 +613,13 @@ RHI_DeviceStatus CRenderBackendDX9::CheckDeviceStatus() const
 
 void CRenderBackendDX9::Present()
 {
-	if(m_pDevice)
-		m_pDevice->PresentEx(nullptr, nullptr, nullptr, nullptr, 0);
+	if (!m_pDevice) 
+		return;
+
+	const HRESULT hr = m_pDevice->PresentEx(nullptr, nullptr, nullptr, nullptr, 0);
+
+	if (FAILED(hr) && hr != D3DERR_DEVICELOST && hr != D3DERR_DEVICENOTRESET)
+		Print("! [DX9] PresentEx failed (0x%08x)", hr);
 }
 
 void CRenderBackendDX9::OnFrameBegin()

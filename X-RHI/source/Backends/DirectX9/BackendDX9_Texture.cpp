@@ -125,7 +125,7 @@ RHI_TextureHandle CRenderBackendDX9::CreateTexture(const RHI_TextureDesc& desc, 
 		usage |= D3DUSAGE_AUTOGENMIPMAP;
 
 	if(desc.usage & (RHI_TexUsage_CPUReadable | RHI_TexUsage_CPUWritable))
-		Crash("! [DX9] CreateTexture: CPUReadable/CPUWritable flags are ignored in D3D9Ex "
+		Print("! [DX9] CreateTexture: CPUReadable/CPUWritable flags are ignored in D3D9Ex "
 				 "(texture '%s'). Use staging workflow instead.",
 				 desc.debugName ? desc.debugName : "<unnamed>");
 
