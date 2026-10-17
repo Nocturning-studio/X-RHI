@@ -7,7 +7,7 @@
 #include "../../../include/XRHI.h"
 #include "BackendDX9_Internal.h"
 ////////////////////////////////////////////////////////////////////////////////
-class XRHI_API CRenderBackendDX9 : public IRenderBackend
+class CRenderBackendDX9 : public IRenderBackend
 {
   public:
 	CRenderBackendDX9();
@@ -83,6 +83,9 @@ class XRHI_API CRenderBackendDX9 : public IRenderBackend
 	virtual void SetIndexBuffer(RHI_BufferHandle ib, RHI_IndexFormat fmt) override;
 	virtual void SetPrimitiveTopology(RHI_Topology topology) override;
 
+	virtual void* GetShaderNativeHandle(RHI_ShaderHandle h) override;
+	virtual void* GetInputLayoutNativeHandle(RHI_InputLayoutHandle h) override;
+
 	virtual void SetViewport(const RHI_Viewport& vp) override;
 	virtual RHI_Viewport GetViewport() const override;
 	virtual void SetScissorRect(const RHI_Rect* rect) override;
@@ -97,28 +100,6 @@ class XRHI_API CRenderBackendDX9 : public IRenderBackend
 	virtual void Draw(uint32_t vertexCount, uint32_t startVertex = 0) override;
 	virtual void DrawIndexed(uint32_t indexCount, uint32_t startIndex = 0, uint32_t baseVertex = 0) override;
 	virtual void DrawFullscreen() override;
-
-	// ============================================================================
-	// Extended D3D9-only API.
-	//
-	// Эти методы дают "тонкий" контроль над отдельными состояниями.
-	// Доступ — через AsDX9(backend).
-	//
-	// ВАЖНО: вызов любого из них инвалидирует m_psoCacheValid. Следующий
-	// SetPipelineState() заново применит все поля PSO.
-	//
-	// ============================================================================
-	void SetVertexShader(RHI_ShaderHandle handle);
-	void SetPixelShader(RHI_ShaderHandle handle);
-
-	void SetBlendState(const RHI_BlendState& state);
-	const RHI_BlendState& GetBlendState() const { return m_blendCache; }
-	void SetDepthStencilState(const RHI_DepthStencilState& state);
-	const RHI_DepthStencilState& GetDepthStencilState() const { return m_depthCache; }
-	void SetRasterizerState(const RHI_RasterizerState& state);
-	const RHI_RasterizerState& GetRasterizerState() const { return m_rasterCache; }
-
-	void SetInputLayout(RHI_InputLayoutHandle layout);
 
   private:
 	// ============================================================================
@@ -287,6 +268,17 @@ class XRHI_API CRenderBackendDX9 : public IRenderBackend
 
 	void ReleaseNativeDeviceResources();
 	void RecreateNativeDeviceResources();
+
+	// ============================================================================
+	// Pipeline state
+	// ============================================================================
+	void ApplyBlendState(const RHI_BlendState& state);
+	void ApplyDepthStencilState(const RHI_DepthStencilState& state);
+	void ApplyRasterizerState(const RHI_RasterizerState& state);
+
+	void ApplyVertexShader(RHI_ShaderHandle handle);
+	void ApplyPixelShader(RHI_ShaderHandle handle);
+	void ApplyInputLayout(RHI_InputLayoutHandle layout);
 
 	// ============================================================================
 	// RTV / DSV helpers

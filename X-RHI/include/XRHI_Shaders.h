@@ -144,7 +144,7 @@ class RHI_ShaderMacroList
 	void Rebuild()
 	{
 		m_macros.clear();
-		m_macros.reserve(m_names.size() + 1);
+		m_macros.resize(m_names.size() + 1);
 
 		for(size_t i = 0; i < m_names.size(); ++i)
 		{
