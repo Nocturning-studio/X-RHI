@@ -113,13 +113,14 @@ class CRenderBackendDX9 : public IRenderBackend
 	D3DDISPLAYMODE m_DesktopMode;
 	UINT m_DesktopRefreshRate = 60;
 	RHIDeviceCaps m_DeviceCaps;
+	bool m_deviceRemoved = false;
 
 	// ============================================================================
 	// Back buffer
 	// ============================================================================
 	uint32_t m_backBufferWidth = 0;
 	uint32_t m_backBufferHeight = 0;
-	D3DFORMAT m_BackBufferFmt;
+	D3DFORMAT m_backBufferFmt;
 
 	// ============================================================================
 	// Resource pools

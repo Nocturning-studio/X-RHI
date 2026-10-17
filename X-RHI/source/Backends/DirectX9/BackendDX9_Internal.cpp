@@ -113,7 +113,7 @@ RHI_Format D3DFormatToRHI(D3DFORMAT fmt)
 	case D3DFMT_A16B16G16R16:
 		return RHI_Format::R16G16B16A16_UNORM;
 	case D3DFMT_G16R16:
-		return RHI_Format::RG16_FLOAT; // ближайшее
+		return RHI_Format::RG16_UNORM;
 
 	// --- Color 32-bit float ---
 	case D3DFMT_A32B32G32R32F:

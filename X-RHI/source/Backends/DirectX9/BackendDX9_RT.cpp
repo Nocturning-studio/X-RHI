@@ -214,12 +214,12 @@ void CRenderBackendDX9::ReleaseAllRTVDSV()
 
 void CRenderBackendDX9::InvalidateUserRTVDSVOnReset()
 {
-	// Освобождаем все пользовательские RTV/DSV. Back buffer слоты (id == 0)
-	// не трогаем — их поверхность обновится в RefreshBackBufferRTVs.
-
-	for(uint32_t i = 0; i < m_rtvSlots.size(); ++i)
+	for (uint32_t i = 0; i < m_rtvSlots.size(); ++i)
 	{
-		if(m_rtvSlots[i].surface)
+		if (m_backBufferRTV.IsValid() && i == m_backBufferRTV.id)
+			continue;
+
+		if (m_rtvSlots[i].surface)
 		{
 			m_rtvSlots[i].surface->Release();
 			m_rtvSlots[i].surface = nullptr;

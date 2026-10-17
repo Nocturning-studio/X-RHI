@@ -68,7 +68,7 @@ RHI_TextureHandle CRenderBackendDX9::CreateTexture(const RHI_TextureDesc& desc, 
 		}
 		else
 		{
-			Crash("! [DX9] CreateTexture: sampleable depth requested, "
+			Print("! [DX9] CreateTexture: sampleable depth requested, "
 				"but no INTZ/DF24/DF16 support on this device "
 				"(texture '%s'). Depth reads in shaders will not work.",
 				desc.debugName ? desc.debugName : "<unnamed>");
@@ -221,8 +221,6 @@ void CRenderBackendDX9::DestroyTexture(RHI_TextureHandle handle)
 		impl->texCube->Release();
 	if (impl->tex3D)
 		impl->tex3D->Release();
-	if (impl->surface)
-		impl->surface->Release();
 	delete impl;
 }
 

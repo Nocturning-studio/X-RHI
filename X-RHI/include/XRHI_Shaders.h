@@ -144,16 +144,13 @@ class RHI_ShaderMacroList
 	void Rebuild()
 	{
 		m_macros.clear();
-		m_macros.resize(m_names.size() + 1);
+		m_macros.reserve(m_names.size() + 1);
 
-		for(size_t i = 0; i < m_names.size(); ++i)
+		for (size_t i = 0; i < m_names.size(); ++i)
 		{
-			RHI_ShaderMacro m;
-			m.name = m_names[i].c_str();
-			m.value = m_values[i].c_str();
-			m_macros.push_back(m);
+			m_macros.push_back({ m_names[i].c_str(), m_values[i].c_str() });
 		}
-		m_macros.push_back({nullptr, nullptr}); // terminator
+		m_macros.push_back({ nullptr, nullptr });
 	}
 
 	std::deque<std::string> m_names;

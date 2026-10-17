@@ -330,6 +330,7 @@ RHI_ShaderCompileResult CRenderBackendDX9::CompileShader(const RHI_ShaderCompile
 	if(FAILED(hrCreate))
 	{
 		Print("! [DX9] CompileShader: Create*Shader failed (hr=0x%08x)", hrCreate);
+		sh->blob = nullptr;
 		bytecode->Release();
 		delete sh;
 		result.errorMessage = "Create*Shader failed";
