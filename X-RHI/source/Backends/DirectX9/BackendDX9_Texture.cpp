@@ -23,45 +23,6 @@ namespace
 	}
 } // namespace
 ////////////////////////////////////////////////////////////////////////////////
-RHI_TextureHandle CRenderBackendDX9::AllocRHI_TextureHandle(DX9Texture* tex)
-{
-	uint32_t index;
-	if(!m_FreeTextureIndices.empty())
-	{
-		index = m_FreeTextureIndices.top();
-		m_FreeTextureIndices.pop();
-		m_Textures[index] = tex;
-	}
-	else
-	{
-		index = static_cast<uint32_t>(m_Textures.size());
-		m_Textures.push_back(tex);
-	}
-	return RHI_TextureHandle{index};
-}
-
-DX9Texture* CRenderBackendDX9::GetTexture(RHI_TextureHandle handle)
-{
-	if(!handle.IsValid() || handle.id >= m_Textures.size())
-		return nullptr;
-	return m_Textures[handle.id];
-}
-
-void CRenderBackendDX9::FreeRHI_TextureHandle(RHI_TextureHandle handle)
-{
-	if(!handle.IsValid() || handle.id >= m_Textures.size())
-		return;
-	DX9Texture* tex = m_Textures[handle.id];
-	if(!tex)
-	{
-		Print("! [DX9] Double free of RHI_TextureHandle(id=%u) detected, ignoring.", handle.id);
-		return;
-	}
-	delete tex;
-	m_Textures[handle.id] = nullptr;
-	m_FreeTextureIndices.push(handle.id);
-}
-
 RHI_TextureHandle CRenderBackendDX9::CreateTexture(const RHI_TextureDesc& desc, const void* initialData)
 {
 	if(!m_pDevice)
@@ -241,26 +202,28 @@ RHI_TextureHandle CRenderBackendDX9::CreateTexture(const RHI_TextureDesc& desc, 
 		}
 	}
 
-	return AllocRHI_TextureHandle(impl);
+	return m_textures.Allocate(impl);
 }
 
 void CRenderBackendDX9::DestroyTexture(RHI_TextureHandle handle)
 {
-	DX9Texture* impl = GetTexture(handle);
-	if(!impl)
+	DX9Texture* impl = m_textures.Release(handle);
+	if (!impl)
 	{
-		Print("! [DX9] DestroyTexture: invalid handle (id=%u)", handle.id);
+		if (handle.IsValid() && handle.id < m_textures.Data().size())
+			Print("! [DX9] DestroyTexture: double free of RHI_TextureHandle(id=%u), ignoring", handle.id);
 		return;
 	}
-	if(impl->tex2D)
+
+	if (impl->tex2D)
 		impl->tex2D->Release();
-	if(impl->texCube)
+	if (impl->texCube)
 		impl->texCube->Release();
-	if(impl->tex3D)
+	if (impl->tex3D)
 		impl->tex3D->Release();
-	if(impl->surface)
+	if (impl->surface)
 		impl->surface->Release();
-	FreeRHI_TextureHandle(handle);
+	delete impl;
 }
 
 bool CRenderBackendDX9::CheckFormatSupport(RHI_Format fmt, bool isRenderTarget, bool isDepthStencil, bool isCube)
