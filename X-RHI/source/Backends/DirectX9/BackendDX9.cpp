@@ -286,11 +286,7 @@ void CRenderBackendDX9::ReleaseAllResources()
 	}
 	m_pipelineStates.Clear();
 
-	m_currentPSO = {};
-	m_psoCacheValid = false;
-
-	m_currentVS = nullptr;
-	m_currentPS = nullptr;
+	m_stateCache.Invalidate();
 
 	// --- Cached state ---
 	InvalidateGeometryCache();
@@ -404,6 +400,7 @@ void CRenderBackendDX9::RecreateNativeDeviceResources()
 		DWORD usage = 0;
 		if (t->isRenderTarget) usage |= D3DUSAGE_RENDERTARGET;
 		if (t->isDepthStencil) usage |= D3DUSAGE_DEPTHSTENCIL;
+		if (t->usage & RHI_TexUsage_GenerateMips) usage |= D3DUSAGE_AUTOGENMIPMAP;
 
 		HRESULT hr = E_FAIL;
 		switch (t->dim)
@@ -528,6 +525,7 @@ bool CRenderBackendDX9::Reset(const RHI_PresentationParams& params)
 
 	InvalidateUserRTVDSVOnReset();
 	ReleaseNativeDeviceResources();
+	DestroyFullscreenGeometry();
 
 	HRESULT hr = m_pDevice->Reset(&m_PP);
 	if(FAILED(hr))
@@ -537,7 +535,7 @@ bool CRenderBackendDX9::Reset(const RHI_PresentationParams& params)
 	}
 
 	RecreateNativeDeviceResources();
-
+	CreateFullscreenGeometry();
 	CacheBackBufferDimensions();
 	CreateFullscreenGeometry();
 

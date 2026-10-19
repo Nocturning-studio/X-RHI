@@ -34,6 +34,9 @@ D3DFORMAT RHIToD3DFormat(RHI_Format fmt)
 	case RHI_Format::R16G16B16A16_UNORM:
 		return D3DFMT_A16B16G16R16;
 
+	case RHI_Format::RG16_UNORM:
+		return D3DFMT_G16R16;
+
 		// --- Color 32-bit float ---
 	case RHI_Format::R32G32B32A32_FLOAT:
 		return D3DFMT_A32B32G32R32F;
@@ -212,6 +215,7 @@ size_t GetPixelSize(RHI_Format fmt)
 	case RHI_Format::R16G16B16A16_UNORM:
 		return 8;
 	case RHI_Format::RG16_FLOAT:
+	case RHI_Format::RG16_UNORM:
 		return 4;
 	case RHI_Format::R16_FLOAT:
 		return 2;
